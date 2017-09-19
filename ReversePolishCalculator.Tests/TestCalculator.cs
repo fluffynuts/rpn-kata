@@ -290,17 +290,38 @@ namespace ReversePolishCalculator.Tests
                     Expect(result).To.Equal(expected);
                 }
             }
+
             [TestFixture]
             public class Modulo
             {
                 [Test]
-                public void WhenOperatorIsPercent_ShouldModuloTwoIntegers()
+                public void WhenOperatorIsPercent_ShouldModuloFirstIntegerBySecond()
                 {
                     // Arrange
                     var first = GetRandomInt();
                     var second = GetRandomInt();
                     var expected = (first % second);
                     var input = $"{first} {second} %";
+                    var sut = Create();
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
+            }
+
+            [TestFixture]
+            public class Exponention
+            {
+                [Test]
+                public void WhenOperatorIsCaret_ShouldRaiseFirstIntegerToThePowerOfTheSecond()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = (int)Math.Pow(first, second);
+                    var input = $"{first} {second} ^";
                     var sut = Create();
                     // Pre-Assert
                     // Act
