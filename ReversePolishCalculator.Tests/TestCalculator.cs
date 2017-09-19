@@ -233,6 +233,22 @@ namespace ReversePolishCalculator.Tests
                     // Assert
                     Expect(result).To.Equal(expected);
                 }
+
+                [Test]
+                public void WhenHaveTwoNumbers_SeparatedByComma_WithPlusOperatorAndNoSpace_ShouldReturnSum()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = first + second;
+                    var input = $"{first},{second}+";
+                    var sut = Create();
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
             }
         }
 
