@@ -51,6 +51,23 @@ namespace ReversePolishCalculator.Tests
             }
         }
 
+        [TestFixture]
+        public class CalculatingSumOfTwoIntegers
+        {
+            [Test]
+            public void GivenTwoSingleDigitIntegers_ShouldCalculateSum()
+            {
+                // Arrange
+                var input = "1 2";
+                var sut = Create();
+                // Pre-Assert
+                // Act
+                var result = sut.Calculate(input);
+                // Assert
+                Expect(result).To.Equal(3);
+            }
+        }
+
         private static ICalculator Create()
         {
             return new Calculator();

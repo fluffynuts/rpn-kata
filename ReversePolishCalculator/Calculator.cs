@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ReversePolishCalculator
 {
@@ -11,7 +12,19 @@ namespace ReversePolishCalculator
     {
         public int Calculate(string input)
         {
-            throw new ArgumentException();
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentException();
+            }
+            var parts = input
+                           .Split(new[] { " " }, StringSplitOptions.None)
+                           .Select(int.Parse)
+                           .ToArray();
+            if (parts.Length != 2)
+            {
+                throw new ArgumentException();
+            }
+            return parts.Sum();
         }
     }
 }
