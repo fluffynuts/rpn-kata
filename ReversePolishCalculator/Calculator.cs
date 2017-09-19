@@ -11,7 +11,7 @@ namespace ReversePolishCalculator
     {
         public int Calculate(string input)
         {
-            throw new NotImplementedException();
+            throw new ArgumentException();
         }
     }
 }
