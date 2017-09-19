@@ -138,6 +138,26 @@ namespace ReversePolishCalculator.Tests
             }
         }
 
+        [TestFixture]
+        public class UsingReversePolishNotationToPerformAddition
+        {
+            [Test]
+            public void ShouldCalculateTheSumOfTwoIntegers()
+            {
+                // Arrange
+                var first = GetRandomInt();
+                var second = GetRandomInt();
+                var expected = first + second;
+                var input = $"{first} {second} +";
+                var sut = Create();
+                // Pre-Assert
+                // Act
+                var result = sut.Calculate(input);
+                // Assert
+                Expect(result).To.Equal(expected);
+            }
+        }
+
         private static ICalculator Create()
         {
             return new Calculator();
