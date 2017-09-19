@@ -270,6 +270,25 @@ namespace ReversePolishCalculator.Tests
                     Expect(result).To.Equal(expected);
                 }
             }
+            [TestFixture]
+            public class Division
+            {
+                [Test]
+                public void WhenOperatorIsSlash_ShouldDivideTwoIntegers()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = (int)(first / second);
+                    var input = $"{first} {second} /";
+                    var sut = Create();
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
+            }
         }
 
         private static ICalculator Create()

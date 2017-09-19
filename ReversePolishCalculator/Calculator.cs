@@ -52,7 +52,8 @@ namespace ReversePolishCalculator
             {
                 ["+"] = ints => ints.Sum(),
                 ["-"] = ints => ints.First() - ints.Second(),
-                ["*"] = ints => ints.First() * ints.Second()
+                ["*"] = ints => ints.First() * ints.Second(),
+                ["/"] = ints => ints.First() / ints.Second()
             };
         internal static int Apply(
             this int[] ints,
@@ -76,7 +77,7 @@ namespace ReversePolishCalculator
 
         internal static bool IsOperator(this string str)
         {
-            return new[] { "+", "-", "*" }.Contains(str);
+            return CalculationStrategies.ContainsKey(str);
         }
 
         internal static string LastCharacter(this string str)
