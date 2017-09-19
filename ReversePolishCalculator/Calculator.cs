@@ -16,6 +16,7 @@ namespace ReversePolishCalculator
             var (numbers, op) = SplitInputIntoNumbersAndOperator(input);
             var parts = numbers
                 .EmptyIfNull()
+                .Replace(",", " ")
                 .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
                 .ToInts();
             return parts

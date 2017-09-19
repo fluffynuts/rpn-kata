@@ -180,6 +180,60 @@ namespace ReversePolishCalculator.Tests
                     Expect(result).To.Equal(expected);
                 }
             }
+
+            [TestFixture]
+            public class AllowingCommaSeparatedNumbers
+            {
+                [Test]
+                public void WhenHaveTwoNumbers_SeparatedBySpaceComma_WithNoOperator_ShouldReturnSum()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = first + second;
+                    var input = $"{first}, {second}";
+                    var sut = Create();
+
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
+
+                [Test]
+                public void WhenHaveTwoNumbers_SeparatedByComma_WithNegativeOperator_ShouldReturnDifference()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = first - second;
+                    var input = $"{first}, {second}-";
+                    var sut = Create();
+
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
+
+                [Test]
+                public void WhenHaveTwoNumbers_SeparatedByComma_WithPlusOperator_ShouldReturnSum()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = first + second;
+                    var input = $"{first},{second} +";
+                    var sut = Create();
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
+            }
         }
 
         private static ICalculator Create()
