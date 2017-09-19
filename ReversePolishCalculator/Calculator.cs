@@ -19,7 +19,7 @@ namespace ReversePolishCalculator
                 .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
                 .ToInts();
             return parts
-                     .Sum()
+                     .Apply(op)
                      .ValidateDoesNotExceedDisplayConstraints();
         }
 
@@ -46,6 +46,21 @@ namespace ReversePolishCalculator
 
     internal static class Extensions
     {
+        internal static int Apply(
+            this int[] ints,
+            string op
+        )
+        {
+            return op == "+"
+                    ? ints.Sum()
+                    : ints.First() - ints.Second();
+        }
+
+        internal static int Second(this int[] ints)
+        {
+            return ints.Skip(1).First();
+        }
+
         internal static int ValidateDoesNotExceedDisplayConstraints(this int value)
         {
             return value.ToString().Length > 8
@@ -55,7 +70,7 @@ namespace ReversePolishCalculator
 
         internal static bool IsOperator(this string str)
         {
-            return str == "+";
+            return str == "+" || str == "-";
         }
 
         internal static string LastCharacter(this string str)

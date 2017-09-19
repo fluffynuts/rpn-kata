@@ -139,22 +139,46 @@ namespace ReversePolishCalculator.Tests
         }
 
         [TestFixture]
-        public class UsingReversePolishNotationToPerformAddition
+        public class UsingReversePolishNotation
         {
-            [Test]
-            public void ShouldCalculateTheSumOfTwoIntegers()
+            [TestFixture]
+            public class Addition
             {
-                // Arrange
-                var first = GetRandomInt();
-                var second = GetRandomInt();
-                var expected = first + second;
-                var input = $"{first} {second} +";
-                var sut = Create();
-                // Pre-Assert
-                // Act
-                var result = sut.Calculate(input);
-                // Assert
-                Expect(result).To.Equal(expected);
+                [Test]
+                public void ShouldCalculateTheSumOfTwoIntegers()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var expected = first + second;
+                    var input = $"{first} {second} +";
+                    var sut = Create();
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
+            }
+
+            [TestFixture]
+            public class Subtraction
+            {
+                [Test]
+                public void ShouldCalculateTheDifferenceBetweenTwoIntegers()
+                {
+                    // Arrange
+                    var first = GetRandomInt();
+                    var second = GetRandomInt();
+                    var input = $"{first} {second} -";
+                    var expected = first - second;
+                    var sut = Create();
+                    // Pre-Assert
+                    // Act
+                    var result = sut.Calculate(input);
+                    // Assert
+                    Expect(result).To.Equal(expected);
+                }
             }
         }
 
