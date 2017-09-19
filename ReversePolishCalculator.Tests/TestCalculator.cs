@@ -120,6 +120,22 @@ namespace ReversePolishCalculator.Tests
                     .With.Message.Containing("may not exceed 8 characters");
                 // Assert
             }
+
+            [Test]
+            public void WhenResultIsPositive_And8CharactersLong_ShouldNotThrow()
+            {
+                // Arrange
+                var first = 10_000_000;
+                var second = 1;
+                var input = $"{first} {second}";
+                var sut = Create();
+                // Pre-Assert
+                Expect((first + second).ToString().Length).To.Equal(8);
+                // Act
+                Expect(() => sut.Calculate(input))
+                    .Not.To.Throw();
+                // Assert
+            }
         }
 
         private static ICalculator Create()
