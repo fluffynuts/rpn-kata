@@ -47,20 +47,19 @@ namespace ReversePolishCalculator
 
     internal static class Extensions
     {
+        internal static Dictionary<string, Func<int[], int>> CalculationStrategies =
+            new Dictionary<string, Func<int[], int>>()
+            {
+                ["+"] = ints => ints.Sum(),
+                ["-"] = ints => ints.First() - ints.Second(),
+                ["*"] = ints => ints.First() * ints.Second()
+            };
         internal static int Apply(
             this int[] ints,
             string op
         )
         {
-            switch (op)
-            {
-                case "+":
-                    return ints.Sum();
-                case "-":
-                    return ints.First() - ints.Second();
-                default:
-                    return ints.First() * ints.Second();
-            }
+            return CalculationStrategies[op](ints);
         }
 
         internal static int Second(this int[] ints)
