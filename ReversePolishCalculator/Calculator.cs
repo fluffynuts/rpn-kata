@@ -17,12 +17,21 @@ namespace ReversePolishCalculator
                 .EmptyIfNull()
                 .Split(new[] {" "}, StringSplitOptions.None)
                 .ToInts();
-            return parts.Sum();
+            return parts
+                     .Sum()
+                     .ValidateDoesNotExceedDisplayConstraints();
         }
     }
 
     internal static class Extensions
     {
+        internal static int ValidateDoesNotExceedDisplayConstraints(this int value)
+        {
+            return value.ToString().Length > 8
+                    ? throw new InvalidOperationException("Calculation output may not exceed 8 characters")
+                    : value;
+        }
+
         internal static string EmptyIfNull(this string str)
         {
             return str ?? "";
