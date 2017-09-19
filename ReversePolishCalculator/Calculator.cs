@@ -52,9 +52,15 @@ namespace ReversePolishCalculator
             string op
         )
         {
-            return op == "+"
-                    ? ints.Sum()
-                    : ints.First() - ints.Second();
+            switch (op)
+            {
+                case "+":
+                    return ints.Sum();
+                case "-":
+                    return ints.First() - ints.Second();
+                default:
+                    return ints.First() * ints.Second();
+            }
         }
 
         internal static int Second(this int[] ints)
@@ -71,7 +77,7 @@ namespace ReversePolishCalculator
 
         internal static bool IsOperator(this string str)
         {
-            return str == "+" || str == "-";
+            return new[] { "+", "-", "*" }.Contains(str);
         }
 
         internal static string LastCharacter(this string str)
