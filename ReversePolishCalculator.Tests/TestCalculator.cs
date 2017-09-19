@@ -1,8 +1,8 @@
 ﻿using System;
-using NUnit;
 using NExpect;
 using NUnit.Framework;
 using static NExpect.Expectations;
+using static PeanutButter.RandomGenerators.RandomValueGen;
 
 namespace ReversePolishCalculator.Tests
 {
@@ -65,6 +65,22 @@ namespace ReversePolishCalculator.Tests
                 var result = sut.Calculate(input);
                 // Assert
                 Expect(result).To.Equal(3);
+            }
+
+            [Test]
+            public void GivenTwoArbitraryIntegers_ShouldCalculateSum()
+            {
+                // Arrange
+                var first = GetRandomInt();
+                var second = GetAnother(first);
+                var input = $"{first} {second}";
+                var expected = first + second;
+                var sut = Create();
+                // Pre-Assert
+                // Act
+                var result = sut.Calculate(input);
+                // Assert
+                Expect(result).To.Equal(expected);
             }
         }
 
