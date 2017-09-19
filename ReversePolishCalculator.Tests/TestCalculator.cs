@@ -84,6 +84,27 @@ namespace ReversePolishCalculator.Tests
             }
         }
 
+        [TestFixture]
+        public class ResultShouldFitWithinDisplayLimits
+        {
+            [Test]
+            public void WhenResultIsPositive_And9CharactersLong_ShouldThrow_InvalidOperationException()
+            {
+                // Arrange
+                var first = 99_999_999;
+                var second = 1;
+                var input = $"{first} {second}";
+                var sut = Create();
+                // Pre-Assert
+                Expect((first + second).ToString().Length).To.Equal(9);
+                // Act
+                Expect(() => sut.Calculate(input))
+                    .To.Throw<InvalidOperationException>()
+                    .With.Message.Containing("may not exceed 8 characters");
+                // Assert
+            }
+        }
+
         private static ICalculator Create()
         {
             return new Calculator();
