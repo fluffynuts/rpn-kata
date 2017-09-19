@@ -53,7 +53,8 @@ namespace ReversePolishCalculator
                 ["+"] = ints => ints.Sum(),
                 ["-"] = ints => ints.First() - ints.Second(),
                 ["*"] = ints => ints.First() * ints.Second(),
-                ["/"] = ints => ints.First() / ints.Second()
+                ["/"] = ints => ints.First() / ints.Second(),
+                ["%"] = ints => ints.First() % ints.Second()
             };
         internal static int Apply(
             this int[] ints,
